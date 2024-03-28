@@ -1,28 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Specify the target date for the countdown (year, month (0-based), day, hour, minute, second)
 
-  // Unix timestamp (in seconds) to count down to
-  var twoDaysFromNow = (new Date().getTime() / 1000) + (86400 * 2) + 1;
+var targetDate = new Date(2024, 6, 9, 12, 0, 0); // April 1, 2024, 12:00:00
 
-  // Set up FlipDown
-  var flipdown = new FlipDown(twoDaysFromNow)
+// Convert the target date to Unix timestamp (in seconds)
 
-    // Start the countdown
-    .start()
+var targetUnixTimestamp = targetDate.getTime() / 1000;
 
-    // Do something when the countdown ends
-    .ifEnded(() => {
-      console.log('The countdown has ended!');
-    });
+// Set up FlipDown with the targetUnixTimestamp
 
-  // Toggle theme
-  var interval = setInterval(() => {
-    let body = document.body;
-    body.classList.toggle('light-theme');
-    body.querySelector('#flipdown').classList.toggle('flipdown__theme-dark');
-    body.querySelector('#flipdown').classList.toggle('flipdown__theme-light');
-  }, 5000);
+var flipdown = new FlipDown(targetUnixTimestamp)
 
-  // Show version number
-  var ver = document.getElementById('ver');
-  ver.innerHTML = flipdown.version;
-});
+  // Start the countdown
+
+  .start()
+
+  // Do something when the countdown ends
+
+  .ifEnded(() => {
+
+    console.log('The countdown has ended!');
+
+  });
